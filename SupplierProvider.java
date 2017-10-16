@@ -3,26 +3,25 @@
  */
 package com.uc_mobileapps.seifesample02.provider;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQueryBuilder;
-
-import com.uc_mobileapps.seifesample02.db.SupplierDB;
 import android.content.ContentProvider;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
+import com.uc_mobileapps.seifesample02.db.SupplierDB;
 import com.uc_mobileapps.seifesample02.delivery.Delivery;
 import com.uc_mobileapps.seifesample02.delivery.Product;
 import com.uc_mobileapps.seifesample02.delivery.schema.DeliverySchema;
 import com.uc_mobileapps.seifesample02.delivery.schema.ProductSchema;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Content provider implementation for com.uc_mobileapps.seifesample02.delivery.Delivery, com.uc_mobileapps.seifesample02.delivery.Product * @author ${properties.author}
@@ -335,8 +334,12 @@ public class SupplierProvider extends ContentProvider {
 		switch (matchId) {
 		case URI_CODE_DELIVERY:
 			qb.setTables(DeliverySchema.TBL_DELIVERY);
-			selection.append(selectionParam);
-			selectionArgs = Arrays.asList(selectionParamArgs);
+			if (selectionParam != null) {
+				selection.append(selectionParam);
+			}
+			if (selectionParamArgs != null) {
+				selectionArgs = Arrays.asList(selectionParamArgs);
+			}
 					break;
 		case URI_CODE_DELIVERY_ID:
 		case URI_CODE_DELIVERY_NO_NOTIFY_ID:
@@ -347,8 +350,12 @@ public class SupplierProvider extends ContentProvider {
 		break;
 		case URI_CODE_PRODUCT:
 			qb.setTables(ProductSchema.TBL_PRODUCT);
-			selection.append(selectionParam);
-			selectionArgs = Arrays.asList(selectionParamArgs);
+			if (selectionParam != null) {
+				selection.append(selectionParam);
+			}
+			if (selectionParamArgs != null) {
+				selectionArgs = Arrays.asList(selectionParamArgs);
+			}
 					break;
 		case URI_CODE_PRODUCT_ID:
 		case URI_CODE_PRODUCT_NO_NOTIFY_ID:

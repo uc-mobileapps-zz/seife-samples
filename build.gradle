@@ -1,7 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-// apply from 'local.gradle'
-
 buildscript {
     repositories {
         mavenCentral()
@@ -11,7 +9,7 @@ buildscript {
         //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:+"
 
-        classpath 'com.android.tools.build:gradle:2.3.0'
+        classpath 'com.android.tools.build:gradle:2.3.3'
 
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
         // NOTE: Do not place your application dependencies here; they belong
@@ -22,6 +20,9 @@ buildscript {
 plugins {
     id "com.jfrog.artifactory" version "4.4.13"
 }
+
+apply from: 'local.gradle'
+
 
 allprojects {
     repositories {

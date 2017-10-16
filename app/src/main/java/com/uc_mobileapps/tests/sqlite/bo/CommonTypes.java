@@ -9,8 +9,6 @@ import com.weebmeister.seife.anno.SeifeField;
 
 import java.util.Date;
 
-import android.content.Context;
-
 /**
  * Created by Klaus on 10.03.2017.
  */
@@ -33,6 +31,12 @@ public class CommonTypes implements Parcelable{
 
     @SeifeField
     private Byte typeNullableByte;
+
+    @SeifeField
+    private short typeShort;
+
+    @SeifeField
+    private Short typeNullableShort;
 
     @SeifeField
     private int typeInt;
@@ -89,6 +93,22 @@ public class CommonTypes implements Parcelable{
 
     public void setTypeByte(byte typeByte) {
         this.typeByte = typeByte;
+    }
+
+    public short getTypeShort() {
+        return typeShort;
+    }
+
+    public void setTypeShort(short typeShort) {
+        this.typeShort = typeShort;
+    }
+
+    public Short getTypeNullableShort() {
+        return typeNullableShort;
+    }
+
+    public void setTypeNullableShort(Short typeNullableShort) {
+        this.typeNullableShort = typeNullableShort;
     }
 
     public Byte getTypeNullableByte() {
@@ -215,43 +235,44 @@ public class CommonTypes implements Parcelable{
 
 	public void readFromParcel(Parcel source) {
 		String s;
-		s=source.readString(); setId((s!=null) ? Long.parseLong(s) : null);
-		setTypeBoolean((0x1 & source.readByte()) != 0);
-		setTypeByte(source.readByte());
-		setTypeDouble(source.readDouble());
-		setTypeFloat(source.readFloat());
-		setTypeInt(source.readInt());
-		setTypeLong(source.readLong());
-		s=source.readString(); setTypeNullableBoolean((s!=null) ? Boolean.parseBoolean(s) : null);
-		s=source.readString(); setTypeNullableByte((s!=null) ? Byte.parseByte(s) : null);
-		s=source.readString(); setTypeNullableDouble((s!=null) ? Double.parseDouble(s) : null);
-		s=source.readString(); setTypeNullableFloat((s!=null) ? Float.parseFloat(s) : null);
-		s=source.readString(); setTypeNullableInt((s!=null) ? Integer.parseInt(s) : null);
-		s=source.readString(); setTypeNullableLong((s!=null) ? Long.parseLong(s) : null);
-		setTypeString(source.readString());
-		s=source.readString(); setTypeUtilDate((s!=null) ? new java.util.Date(Long.parseLong(s)) : null);
+		s=source.readString(); id = (s!=null) ? Long.parseLong(s) : null;
+		typeBoolean = (0x1 & source.readByte()) != 0;
+		typeByte = source.readByte();
+		typeDouble = source.readDouble();
+		typeFloat = source.readFloat();
+		typeInt = source.readInt();
+		typeLong = source.readLong();
+		s=source.readString(); typeNullableBoolean = (s!=null) ? Boolean.parseBoolean(s) : null;
+		s=source.readString(); typeNullableByte = (s!=null) ? Byte.parseByte(s) : null;
+		s=source.readString(); typeNullableDouble = (s!=null) ? Double.parseDouble(s) : null;
+		s=source.readString(); typeNullableFloat = (s!=null) ? Float.parseFloat(s) : null;
+		s=source.readString(); typeNullableInt = (s!=null) ? Integer.parseInt(s) : null;
+		s=source.readString(); typeNullableLong = (s!=null) ? Long.parseLong(s) : null;
+		typeString = source.readString();
+		s=source.readString(); typeUtilDate = (s!=null) ? new java.util.Date(Long.parseLong(s)) : null;
 	}
 
 
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeString((getId()!=null) ? Long.toString(getId()) : null);
-		dest.writeByte(isTypeBoolean() ? (byte)1 : 0);
-		dest.writeByte(getTypeByte());
-		dest.writeDouble(getTypeDouble());
-		dest.writeFloat(getTypeFloat());
-		dest.writeInt(getTypeInt());
-		dest.writeLong(getTypeLong());
-		dest.writeString((getTypeNullableBoolean()!=null) ? Boolean.toString(getTypeNullableBoolean()) : null);
-		dest.writeString((getTypeNullableByte()!=null) ? Byte.toString(getTypeNullableByte()) : null);
-		dest.writeString((getTypeNullableDouble()!=null) ? Double.toString(getTypeNullableDouble()) : null);
-		dest.writeString((getTypeNullableFloat()!=null) ? Float.toString(getTypeNullableFloat()) : null);
-		dest.writeString((getTypeNullableInt()!=null) ? Integer.toString(getTypeNullableInt()) : null);
-		dest.writeString((getTypeNullableLong()!=null) ? Long.toString(getTypeNullableLong()) : null);
-		dest.writeString(getTypeString());
-		dest.writeString((getTypeUtilDate()!=null) ? Long.toString(getTypeUtilDate().getTime()) : null);
+		dest.writeString((id!=null) ? Long.toString(id) : null);
+		dest.writeByte(typeBoolean ? (byte)1 : 0);
+		dest.writeByte(typeByte);
+		dest.writeDouble(typeDouble);
+		dest.writeFloat(typeFloat);
+		dest.writeInt(typeInt);
+		dest.writeLong(typeLong);
+		dest.writeString((typeNullableBoolean!=null) ? Boolean.toString(typeNullableBoolean) : null);
+		dest.writeString((typeNullableByte!=null) ? Byte.toString(typeNullableByte) : null);
+		dest.writeString((typeNullableDouble!=null) ? Double.toString(typeNullableDouble) : null);
+		dest.writeString((typeNullableFloat!=null) ? Float.toString(typeNullableFloat) : null);
+		dest.writeString((typeNullableInt!=null) ? Integer.toString(typeNullableInt) : null);
+		dest.writeString((typeNullableLong!=null) ? Long.toString(typeNullableLong) : null);
+		dest.writeString(typeString);
+		dest.writeString((typeUtilDate!=null) ? Long.toString(typeUtilDate.getTime()) : null);
 	}
 		//@end seife autogenerated]
+
 
 
 
