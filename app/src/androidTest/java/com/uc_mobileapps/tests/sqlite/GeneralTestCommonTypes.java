@@ -76,14 +76,14 @@ public class GeneralTestCommonTypes {
 
             assertEquals(true, commonTypes2.isTypeBoolean());
             assertEquals(Byte.MAX_VALUE,    commonTypes2.getTypeByte());
-//            assertEquals(Short.MAX_VALUE,   commonTypes2.getTypeShort());
+            assertEquals(Short.MAX_VALUE,   commonTypes2.getTypeShort());
             assertEquals(Double.MAX_VALUE,  commonTypes2.getTypeDouble(), 0.0000000000001);
             assertEquals(Float.MAX_VALUE,   commonTypes2.getTypeFloat(), 0.0000000000001);
             assertEquals(Integer.MAX_VALUE, commonTypes2.getTypeInt());
             assertEquals(Long.MAX_VALUE,    commonTypes2.getTypeLong());
             assertEquals(Boolean.TRUE,      commonTypes2.getTypeNullableBoolean());
             assertEquals(Byte.valueOf(Byte.MAX_VALUE),      commonTypes2.getTypeNullableByte());
-//            assertEquals(Short.valueOf(Short.MAX_VALUE),    commonTypes2.getTypeNullableShort());
+            assertEquals(Short.valueOf(Short.MAX_VALUE),    commonTypes2.getTypeNullableShort());
             assertEquals(Double.valueOf(Double.MAX_VALUE),  commonTypes2.getTypeNullableDouble());
             assertEquals(Float.valueOf(Float.MAX_VALUE),    commonTypes2.getTypeNullableFloat());
             assertEquals(Integer.valueOf(Integer.MAX_VALUE),commonTypes2.getTypeNullableInt());
@@ -128,14 +128,14 @@ public class GeneralTestCommonTypes {
 
             assertEquals(false, commonTypes2.isTypeBoolean());
             assertEquals(Byte.MIN_VALUE,    commonTypes2.getTypeByte());
-//            assertEquals(Short.MIN_VALUE,   commonTypes2.getTypeShort());
+            assertEquals(Short.MIN_VALUE,   commonTypes2.getTypeShort());
             assertEquals(Double.MIN_VALUE,  commonTypes2.getTypeDouble(), 0.0000000000001);
             assertEquals(Float.MIN_VALUE,   commonTypes2.getTypeFloat(), 0.0000000000001);
             assertEquals(Integer.MIN_VALUE, commonTypes2.getTypeInt());
             assertEquals(Long.MIN_VALUE,    commonTypes2.getTypeLong());
             assertEquals(Boolean.FALSE,      commonTypes2.getTypeNullableBoolean());
             assertEquals(Byte.valueOf(Byte.MIN_VALUE),      commonTypes2.getTypeNullableByte());
-//            assertEquals(Short.valueOf(Short.MIN_VALUE),    commonTypes2.getTypeNullableShort());
+            assertEquals(Short.valueOf(Short.MIN_VALUE),    commonTypes2.getTypeNullableShort());
             assertEquals(Double.valueOf(Double.MIN_VALUE),  commonTypes2.getTypeNullableDouble());
             assertEquals(Float.valueOf(Float.MIN_VALUE),    commonTypes2.getTypeNullableFloat());
             assertEquals(Integer.valueOf(Integer.MIN_VALUE),commonTypes2.getTypeNullableInt());

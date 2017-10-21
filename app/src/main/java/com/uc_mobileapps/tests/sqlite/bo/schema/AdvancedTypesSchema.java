@@ -65,8 +65,7 @@ public class AdvancedTypesSchema {
 	 * Table creation script
 	 */
 	public static final String SQL_CREATE_TABLE_ADVANCED_TYPES =
-			"create table " + TBL_ADVANCED_TYPES + " (" + 
-
+			"create table " + TBL_ADVANCED_TYPES + " (" +
 					COL_ID + " integer primary key autoincrement," +
 					COL_TYPE_BINARY + " blob," +
 					COL_TYPE_SQL_DATE + " integer," +
@@ -131,7 +130,7 @@ public class AdvancedTypesSchema {
 		bo.setTypeSqlDate(c.isNull(c.getColumnIndex(COL_TYPE_SQL_DATE)) ? null : new java.sql.Date(c.getLong(c.getColumnIndex(COL_TYPE_SQL_DATE))));
 		bo.setTypeSqlTime(c.isNull(c.getColumnIndex(COL_TYPE_SQL_TIME)) ? null : new java.sql.Time(c.getLong(c.getColumnIndex(COL_TYPE_SQL_TIME))));
 		if (c.isNull(c.getColumnIndex(COL_TYPE_SQL_TIMESTAMP))) {
-	bo.setTypeSqlTimestamp(null);
+			bo.setTypeSqlTimestamp(null);
 		} else {
 			long timeNanos = c.getLong(c.getColumnIndex(COL_TYPE_SQL_TIMESTAMP));
 			java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(timeNanos / 1000000);

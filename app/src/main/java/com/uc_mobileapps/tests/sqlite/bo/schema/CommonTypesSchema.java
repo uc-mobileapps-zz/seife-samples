@@ -42,6 +42,10 @@ public class CommonTypesSchema {
 
 	public static String COL_TYPE_NULLABLE_LONG = "typeNullableLong";
 
+	public static String COL_TYPE_NULLABLE_SHORT = "typeNullableShort";
+
+	public static String COL_TYPE_SHORT = "typeShort";
+
 	public static String COL_TYPE_STRING = "typeString";
 
 	public static String COL_TYPE_UTIL_DATE = "typeUtilDate";
@@ -85,6 +89,12 @@ public class CommonTypesSchema {
 	/** Fully qualified column name of {@link #COL_TYPE_NULLABLE_LONG */
 	public static String COL_TYPE_NULLABLE_LONG_FQN = "commonTypes.typeNullableLong";
 
+	/** Fully qualified column name of {@link #COL_TYPE_NULLABLE_SHORT */
+	public static String COL_TYPE_NULLABLE_SHORT_FQN = "commonTypes.typeNullableShort";
+
+	/** Fully qualified column name of {@link #COL_TYPE_SHORT */
+	public static String COL_TYPE_SHORT_FQN = "commonTypes.typeShort";
+
 	/** Fully qualified column name of {@link #COL_TYPE_STRING */
 	public static String COL_TYPE_STRING_FQN = "commonTypes.typeString";
 
@@ -94,14 +104,13 @@ public class CommonTypesSchema {
 	/**
 	 * All columns
 	 */
-	public static String[] COLUMNS = new String[] { COL_ID, COL_TYPE_BOOLEAN, COL_TYPE_BYTE, COL_TYPE_DOUBLE, COL_TYPE_FLOAT, COL_TYPE_INT, COL_TYPE_LONG, COL_TYPE_NULLABLE_BOOLEAN, COL_TYPE_NULLABLE_BYTE, COL_TYPE_NULLABLE_DOUBLE, COL_TYPE_NULLABLE_FLOAT, COL_TYPE_NULLABLE_INT, COL_TYPE_NULLABLE_LONG, COL_TYPE_STRING, COL_TYPE_UTIL_DATE	};
+	public static String[] COLUMNS = new String[] { COL_ID, COL_TYPE_BOOLEAN, COL_TYPE_BYTE, COL_TYPE_DOUBLE, COL_TYPE_FLOAT, COL_TYPE_INT, COL_TYPE_LONG, COL_TYPE_NULLABLE_BOOLEAN, COL_TYPE_NULLABLE_BYTE, COL_TYPE_NULLABLE_DOUBLE, COL_TYPE_NULLABLE_FLOAT, COL_TYPE_NULLABLE_INT, COL_TYPE_NULLABLE_LONG, COL_TYPE_NULLABLE_SHORT, COL_TYPE_SHORT, COL_TYPE_STRING, COL_TYPE_UTIL_DATE	};
 
 	/**
 	 * Table creation script
 	 */
 	public static final String SQL_CREATE_TABLE_COMMON_TYPES =
-			"create table " + TBL_COMMON_TYPES + " (" + 
-
+			"create table " + TBL_COMMON_TYPES + " (" +
 					COL_ID + " integer primary key autoincrement," +
 					COL_TYPE_BOOLEAN + " integer not null," +
 					COL_TYPE_BYTE + " integer not null," +
@@ -115,6 +124,8 @@ public class CommonTypesSchema {
 					COL_TYPE_NULLABLE_FLOAT + " real," +
 					COL_TYPE_NULLABLE_INT + " integer," +
 					COL_TYPE_NULLABLE_LONG + " integer," +
+					COL_TYPE_NULLABLE_SHORT + " integer," +
+					COL_TYPE_SHORT + " integer not null," +
 					COL_TYPE_STRING + " text," +
 					COL_TYPE_UTIL_DATE + " integer" +
 					")";
@@ -149,6 +160,9 @@ public class CommonTypesSchema {
 		if (null == contentValues.get(COL_TYPE_LONG)) {
 			return false;
 		}
+		if (null == contentValues.get(COL_TYPE_SHORT)) {
+			return false;
+		}
 		return true;
 	}
 	
@@ -175,6 +189,8 @@ public class CommonTypesSchema {
 		contentValues.put(COL_TYPE_NULLABLE_FLOAT, bo.getTypeNullableFloat());
 		contentValues.put(COL_TYPE_NULLABLE_INT, bo.getTypeNullableInt());
 		contentValues.put(COL_TYPE_NULLABLE_LONG, bo.getTypeNullableLong());
+		contentValues.put(COL_TYPE_NULLABLE_SHORT, bo.getTypeNullableShort());
+		contentValues.put(COL_TYPE_SHORT, bo.getTypeShort());
 		contentValues.put(COL_TYPE_STRING, bo.getTypeString());
 		contentValues.put(COL_TYPE_UTIL_DATE, (bo.getTypeUtilDate()!=null) ? bo.getTypeUtilDate().getTime() : null);
 		return contentValues;
@@ -206,6 +222,8 @@ public class CommonTypesSchema {
 		bo.setTypeNullableFloat(c.isNull(c.getColumnIndex(COL_TYPE_NULLABLE_FLOAT)) ? null : c.getFloat(c.getColumnIndex(COL_TYPE_NULLABLE_FLOAT)));
 		bo.setTypeNullableInt(c.isNull(c.getColumnIndex(COL_TYPE_NULLABLE_INT)) ? null : c.getInt(c.getColumnIndex(COL_TYPE_NULLABLE_INT)));
 		bo.setTypeNullableLong(c.isNull(c.getColumnIndex(COL_TYPE_NULLABLE_LONG)) ? null : c.getLong(c.getColumnIndex(COL_TYPE_NULLABLE_LONG)));
+		bo.setTypeNullableShort(c.isNull(c.getColumnIndex(COL_TYPE_NULLABLE_SHORT)) ? null : c.getShort(c.getColumnIndex(COL_TYPE_NULLABLE_SHORT)));
+		bo.setTypeShort(c.getShort(c.getColumnIndex(COL_TYPE_SHORT)));
 		bo.setTypeString(c.getString(c.getColumnIndex(COL_TYPE_STRING)));
 		bo.setTypeUtilDate(c.isNull(c.getColumnIndex(COL_TYPE_UTIL_DATE)) ? null : new java.util.Date(c.getLong(c.getColumnIndex(COL_TYPE_UTIL_DATE))));
 		return bo;

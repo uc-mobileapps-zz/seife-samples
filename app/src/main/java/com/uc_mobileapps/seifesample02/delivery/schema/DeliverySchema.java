@@ -25,25 +25,42 @@ public class DeliverySchema {
 
 	public static String COL_FK_PRODUCT_PRODUCT_ID = "productId";
 
+	public static String COL_PRODUCT_DESCRIPTION = "product_description";
+
+	public static String COL_PRODUCT_NAME = "product_name";
+
+	public static String COL_PRODUCT_PRICE = "product_price";
+
 	/** Fully qualified column name of {@link #COL_ID */
 	public static String COL_ID_FQN = "delivery.id";
 
 	/** Fully qualified column name of {@link #COL_FK_PRODUCT_PRODUCT_ID */
 	public static String COL_FK_PRODUCT_PRODUCT_ID_FQN = "delivery.productId";
+
+	/** Fully qualified column name of {@link #COL_PRODUCT_DESCRIPTION */
+	public static String COL_PRODUCT_DESCRIPTION_FQN = "delivery.product_description";
+
+	/** Fully qualified column name of {@link #COL_PRODUCT_NAME */
+	public static String COL_PRODUCT_NAME_FQN = "delivery.product_name";
+
+	/** Fully qualified column name of {@link #COL_PRODUCT_PRICE */
+	public static String COL_PRODUCT_PRICE_FQN = "delivery.product_price";
 	
 	/**
 	 * All columns
 	 */
-	public static String[] COLUMNS = new String[] { COL_ID, COL_FK_PRODUCT_PRODUCT_ID	};
+	public static String[] COLUMNS = new String[] { COL_ID, COL_FK_PRODUCT_PRODUCT_ID, COL_PRODUCT_DESCRIPTION, COL_PRODUCT_NAME, COL_PRODUCT_PRICE	};
 
 	/**
 	 * Table creation script
 	 */
 	public static final String SQL_CREATE_TABLE_DELIVERY =
-			"create table " + TBL_DELIVERY + " (" + 
-
+			"create table " + TBL_DELIVERY + " (" +
 					COL_ID + " integer primary key autoincrement," +
-					COL_FK_PRODUCT_PRODUCT_ID + " integer" +
+					COL_FK_PRODUCT_PRODUCT_ID + " integer," +
+					COL_PRODUCT_DESCRIPTION + " text," +
+					COL_PRODUCT_NAME + " text," +
+					COL_PRODUCT_PRICE + " text" +
 					", " +
 					" FOREIGN KEY(" + COL_FK_PRODUCT_PRODUCT_ID  + ")" +
 					" REFERENCES " + ProductSchema.TBL_PRODUCT 
@@ -79,6 +96,9 @@ public class DeliverySchema {
 			contentValues.put(COL_ID, bo.getId());
 		}
 		contentValues.put(COL_FK_PRODUCT_PRODUCT_ID, bo.getProductId());
+		contentValues.put(COL_PRODUCT_DESCRIPTION, bo.getProductAtOrderTime().getDescription());
+		contentValues.put(COL_PRODUCT_NAME, bo.getProductAtOrderTime().getName());
+		contentValues.put(COL_PRODUCT_PRICE, (bo.getProductAtOrderTime().getPrice()!=null) ?  bo.getProductAtOrderTime().getPrice().toString() : null);
 		return contentValues;
 	}
 
@@ -97,6 +117,9 @@ public class DeliverySchema {
 
 		bo.setId(c.isNull(c.getColumnIndex(COL_ID)) ? null : c.getLong(c.getColumnIndex(COL_ID)));
 		bo.setProductId(c.isNull(c.getColumnIndex(COL_FK_PRODUCT_PRODUCT_ID)) ? null : c.getLong(c.getColumnIndex(COL_FK_PRODUCT_PRODUCT_ID)));
+		bo.getProductAtOrderTime().setDescription(c.getString(c.getColumnIndex(COL_PRODUCT_DESCRIPTION)));
+		bo.getProductAtOrderTime().setName(c.getString(c.getColumnIndex(COL_PRODUCT_NAME)));
+		bo.getProductAtOrderTime().setPrice(c.isNull(c.getColumnIndex(COL_PRODUCT_PRICE)) ? null : new java.math.BigDecimal(c.getString(c.getColumnIndex(COL_PRODUCT_PRICE))));
 		return bo;
 	}
 	

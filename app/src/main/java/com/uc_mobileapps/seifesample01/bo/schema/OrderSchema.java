@@ -7,7 +7,6 @@ import android.net.Uri;
 
 import com.uc_mobileapps.seifesample01.bo.Customer;
 import com.uc_mobileapps.seifesample01.bo.Order;
-import com.uc_mobileapps.seifesample01.provider.CustomerProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +44,7 @@ public class OrderSchema {
 	 * Table creation script
 	 */
 	public static final String SQL_CREATE_TABLE_ORDER =
-			"create table " + TBL_ORDER + " (" + 
-
+			"create table " + TBL_ORDER + " (" +
 					COL_ID + " integer primary key autoincrement," +
 					COL_FK_CUSTOMER_CUSTOMER_ID + " integer," +
 					COL_ORDER_DATE + " integer not null" +
@@ -138,7 +136,7 @@ public class OrderSchema {
 		String selection = null;
 		String[] selectionArgs = null;
 
-		Uri uri = CustomerProvider.getContentUriCustomer().buildUpon()
+		Uri uri = com.uc_mobileapps.seifesample01.provider.CustomerProvider.getContentUriCustomer().buildUpon()
 				.appendQueryParameter(CustomerSchema.COL_ID, String.valueOf(bo.getId()))
 				.build();
 		Cursor cursor = contentResolver.query(uri, CustomerSchema.COLUMNS, selection, selectionArgs, null);
