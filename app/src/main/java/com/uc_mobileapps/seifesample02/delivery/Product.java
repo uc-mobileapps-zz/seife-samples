@@ -8,6 +8,8 @@ import com.weebmeister.seife.anno.SeifeClass;
 import com.weebmeister.seife.anno.SeifeEmbedded;
 import com.weebmeister.seife.anno.SeifeField;
 
+import android.content.Context;
+
 /**
  * Created by Klaus on 04.04.2017.
  */

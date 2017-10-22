@@ -14,6 +14,8 @@ import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
+import android.content.Context;
+
 /**
  * Created by Klaus on 10.03.2017.
  */

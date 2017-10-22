@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
+import android.os.Parcel;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -168,6 +169,13 @@ public class GeneralTestCommonTypes {
 
             CommonTypes commonTypes2 = CommonTypesSchema.instance().readFromCursor(cursor, new CommonTypes());
             assertFalse(cursor.moveToNext());
+            assertEquals(false,   commonTypes2.isTypeBoolean());
+            assertEquals((byte)0, commonTypes2.getTypeByte());
+            assertEquals((short)0,commonTypes2.getTypeShort());
+            assertEquals(0.0, commonTypes2.getTypeDouble(), 0.0000000000001);
+            assertEquals(0.0f,commonTypes2.getTypeFloat(), 0.0000000000001);
+            assertEquals(0,   commonTypes2.getTypeInt());
+            assertEquals(0L,  commonTypes2.getTypeLong());
 
             assertEquals(null, commonTypes2.getTypeNullableBoolean());
             assertEquals(null, commonTypes2.getTypeNullableByte());
@@ -177,6 +185,56 @@ public class GeneralTestCommonTypes {
             assertEquals(null, commonTypes2.getTypeNullableInt());
             assertEquals(null, commonTypes2.getTypeNullableLong());
         }
+    }
+
+    @Test
+    public void testParcelableCommonTypes() {
+
+        CommonTypes commonTypes = new CommonTypes();
+        commonTypes.setId(-1L);
+        commonTypes.setTypeBoolean(true);
+        commonTypes.setTypeByte(Byte.MIN_VALUE);
+        commonTypes.setTypeShort(Short.MIN_VALUE);
+        commonTypes.setTypeDouble(Double.MIN_VALUE);
+        commonTypes.setTypeFloat(Float.MIN_VALUE);
+
+        commonTypes.setTypeInt(Integer.MIN_VALUE);
+        commonTypes.setTypeLong(Long.MIN_VALUE);
+
+        commonTypes.setTypeNullableBoolean(Boolean.FALSE);
+        commonTypes.setTypeNullableByte(Byte.valueOf(Byte.MIN_VALUE));
+        commonTypes.setTypeNullableShort(Short.valueOf(Short.MIN_VALUE));
+        commonTypes.setTypeNullableDouble(Double.valueOf(Double.MIN_VALUE));
+        commonTypes.setTypeNullableFloat(Float.valueOf(Float.MIN_VALUE));
+        commonTypes.setTypeNullableInt(Integer.valueOf(Integer.MIN_VALUE));
+        commonTypes.setTypeNullableLong(Long.valueOf(Long.MIN_VALUE));
+
+        CommonTypes commonTypes2 = new CommonTypes();
+
+        Parcel parcel = Parcel.obtain();
+        try {
+            commonTypes.writeToParcel(parcel, 0);
+            parcel.setDataPosition(0);
+            commonTypes2.readFromParcel(parcel);
+        } finally {
+            parcel.recycle();
+        }
+
+        assertEquals("boolean", commonTypes.isTypeBoolean(), commonTypes2.isTypeBoolean());
+        assertEquals("byte", commonTypes.getTypeByte(), commonTypes2.getTypeByte());
+        assertEquals("short", commonTypes.getTypeShort(), commonTypes2.getTypeShort());
+        assertEquals("double", commonTypes.getTypeDouble(), commonTypes2.getTypeDouble(), 0.0000000000001);
+        assertEquals("float", commonTypes.getTypeFloat(), commonTypes2.getTypeFloat(), 0.0000000000001);
+        assertEquals("int", commonTypes.getTypeInt(), commonTypes2.getTypeInt());
+        assertEquals("long", commonTypes.getTypeLong(), commonTypes2.getTypeLong());
+        assertEquals("Boolean", commonTypes.getTypeNullableBoolean(), commonTypes2.getTypeNullableBoolean());
+        assertEquals("Byte", commonTypes.getTypeNullableByte(), commonTypes2.getTypeNullableByte());
+        assertEquals("Short", commonTypes.getTypeNullableShort(), commonTypes2.getTypeNullableShort());
+        assertEquals("Double", commonTypes.getTypeNullableDouble(), commonTypes2.getTypeNullableDouble());
+        assertEquals("Float", commonTypes.getTypeNullableFloat(), commonTypes2.getTypeNullableFloat());
+        assertEquals("Integer", commonTypes.getTypeNullableInt(), commonTypes2.getTypeNullableInt());
+        assertEquals("Long", commonTypes.getTypeNullableLong(), commonTypes2.getTypeNullableLong());
+        assertEquals("nullable id", commonTypes.getId(), commonTypes2.getId());
     }
 
 }

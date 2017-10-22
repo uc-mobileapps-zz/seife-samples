@@ -105,7 +105,7 @@ public class AdvancedTypesSchema {
 		contentValues.put(COL_TYPE_BINARY, bo.getTypeBinary());
 		contentValues.put(COL_TYPE_SQL_DATE, (bo.getTypeSqlDate()!=null) ? bo.getTypeSqlDate().getTime() : null);
 		contentValues.put(COL_TYPE_SQL_TIME, (bo.getTypeSqlTime()!=null) ? bo.getTypeSqlTime().getTime() : null);
-		contentValues.put(COL_TYPE_SQL_TIMESTAMP, (bo.getTypeSqlTimestamp()!=null) ? Long.valueOf(bo.getTypeSqlTimestamp().getTime()*1000000+bo.getTypeSqlTimestamp().getNanos()%1000000) : null);
+		contentValues.put(COL_TYPE_SQL_TIMESTAMP, (bo.getTypeSqlTimestamp()!=null) ? bo.getTypeSqlTimestamp().getTime()*1000000+bo.getTypeSqlTimestamp().getNanos()%1000000 - Long.MAX_VALUE : null);
 		contentValues.put(COL_TYPE_URI, (bo.getTypeUri()!=null) ? bo.getTypeUri().toString() : null);
 		contentValues.put(COL_TYPE_URI_ANDROID, (bo.getTypeUriAndroid()!=null) ? bo.getTypeUriAndroid().toString() : null);
 		contentValues.put(COL_TYPE_URL, (bo.getTypeUrl()!=null) ? bo.getTypeUrl().toString() : null);
@@ -132,9 +132,9 @@ public class AdvancedTypesSchema {
 		if (c.isNull(c.getColumnIndex(COL_TYPE_SQL_TIMESTAMP))) {
 			bo.setTypeSqlTimestamp(null);
 		} else {
-			long timeNanos = c.getLong(c.getColumnIndex(COL_TYPE_SQL_TIMESTAMP));
+			long timeNanos = c.getLong(c.getColumnIndex(COL_TYPE_SQL_TIMESTAMP)) + Long.MAX_VALUE;
 			java.sql.Timestamp sqlTimestamp = new java.sql.Timestamp(timeNanos / 1000000);
-			sqlTimestamp.setNanos((int)timeNanos % 1000000);
+			sqlTimestamp.setNanos((int)Math.abs(timeNanos - sqlTimestamp.getTime() * 1000000));
 			bo.setTypeSqlTimestamp(sqlTimestamp);
 		}
 		bo.setTypeUri(c.isNull(c.getColumnIndex(COL_TYPE_URI)) ? null : java.net.URI.create(c.getString(c.getColumnIndex(COL_TYPE_URI))));

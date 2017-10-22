@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.uc_mobileapps.seifesample02.db.SupplierDB;
+
 /**
  * Content provider implementation for com.uc_mobileapps.seifesample02.delivery.Delivery, com.uc_mobileapps.seifesample02.delivery.Product * @author ${properties.author}
  */

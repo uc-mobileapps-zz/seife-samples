@@ -9,6 +9,8 @@ import com.weebmeister.seife.anno.SeifeField;
 
 import java.util.Date;
 
+import android.content.Context;
+
 /**
  * Created by Klaus on 10.03.2017.
  */

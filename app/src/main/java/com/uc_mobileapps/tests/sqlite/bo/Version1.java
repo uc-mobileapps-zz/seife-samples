@@ -7,6 +7,8 @@ import com.weebmeister.seife.anno.GeneratorOption;
 import com.weebmeister.seife.anno.SeifeClass;
 import com.weebmeister.seife.anno.SeifeField;
 
+import android.content.Context;
+
 /**
  * Created by Klaus on 10.03.2017.
  */
