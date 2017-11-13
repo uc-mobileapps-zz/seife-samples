@@ -10,6 +10,16 @@ It shows
 
   no additional files duplicating the model definitions are required
 
+### What's new
+
+* Android Studio 3.0 and Gradle 3.0.0 
+* built-in annotationProcessor instead of android-apt plugin
+* added support for 'short' and 'java.lang.Short'
+
+### Fixes
+* Added more tests for basic and advanced datatypes
+* Enhanced tests of the sql timestamp with nanoseconds resolution
+
 # Building 
 
 You need gradle to build the examples e.g. with Android Studio
